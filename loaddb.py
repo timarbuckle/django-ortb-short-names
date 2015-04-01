@@ -26,7 +26,7 @@ objs = {
 
 
 attribs = {
-    'bidrequest': 'bi',
+    'bidrequest': 'bq',
     'id': 'id',
     'imp': 'im',
     'site': 'si',
