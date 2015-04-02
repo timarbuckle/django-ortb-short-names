@@ -4,6 +4,7 @@ from django.db import models
 class Obj(models.Model):
     name = models.CharField(max_length=30)
     short = models.CharField(max_length=30, unique=True)
+    parents = models.CharField(max_length=100, default='')
 
     def __unicode__(self):
         return self.short

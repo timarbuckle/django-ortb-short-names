@@ -470,9 +470,32 @@ def load_objatts():
             ObjAtt.objects.create(obj=o, att=a)
 
 
+def update_obj_parents():
+    objs = Obj.objects.all()
+    for obj in objs:
+        obj.parents = ''
+        obj.save()
+
+    objatts = ObjAtt.objects.all()
+    for oa in objatts:
+        if oa.att.attribute == 'companionad':
+            key = 'banner'
+        else:
+            key = oa.att.attribute
+
+        objs = Obj.objects.filter(short=key)
+        if len(objs) > 0:
+            if len(objs[0].parents) > 0:
+                objs[0].parents = objs[0].parents + ", " + oa.obj.short
+            else:
+                objs[0].parents = oa.obj.short
+            objs[0].save()
+
+
 def load_all():
     Attribute.objects.all().delete()
     Obj.objects.all().delete()
     load_objs()
     load_attribs()
     load_objatts()
+    update_obj_parents()

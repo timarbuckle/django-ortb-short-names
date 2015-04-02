@@ -3,7 +3,7 @@ from shortnames.models import Obj, Attribute, ObjAtt
 
 
 class ObjAdmin(admin.ModelAdmin):
-    list_display = ('name', 'short')
+    list_display = ('name', 'short', 'parents')
 
 
 class AttributeAdmin(admin.ModelAdmin):
